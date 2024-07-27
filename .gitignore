@@ -126,7 +126,7 @@ dist
 .vscode-test
 
 # COnfidential files
-./server/config/serviceAccountKey.json
+.server/config/serviceAccountKey.json
 
 # yarn v2
 .yarn/cache
