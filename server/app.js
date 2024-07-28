@@ -8,7 +8,7 @@ require('dotenv/config')
 app.use(cors({ origin : true }));
 
 app.get('/', (req, res) => {
-    return res.json('Hello World');
+    return res.json('Hello Worlddd');
 });
 
 // Ruta de autenticación del usaurio
@@ -21,6 +21,6 @@ app.use('/api/users', authRoutes);
  .once('open', () => { console.log('Conectado a MongoDB') })
  .on('error', (error) => { console.log('Error al conectar a MongoDB', error) });
 
-app.listen(4000, () => {
-  console.log('Server is running on port 4000');
+app.listen(4010, () => {
+  console.log('Server is running on port 4010');
 });

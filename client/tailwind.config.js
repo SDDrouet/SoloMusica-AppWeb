@@ -44,19 +44,19 @@ module.exports = {
         "2xl": "1536px",
       },
       colors: {
-        headingColor: "#2e2e2e",
-        textColor: "#515151",
-        cartNumBg: "#e80013",
-        primary: "#f5f3f3",
-        cardOverlay: "rgba(256,256,256,0.4)",
-        darkOverlay: "rgba(0,0,0,0.5)",
-        lightOverlay: "rgba(256,256,256,0.2)",
-        lighttextGray: "#9ca0ab",
-        card: "rgba(256,256,256,0.8)",
-        cartBg: "#282a2c",
-        cartItem: "#2e3033",
-        cartTotal: "#343739",
-        loaderOverlay: "rgba(256,256,256,0.1)",
+        headingColor: "#1a1d23", // Negro oscuro
+        textColor: "#4f5d6e", // Gris azulado oscuro
+        cartNumBg: "#00acee", // Cyan claro
+        primary: "#2f343a", // Negro azulado oscuro
+        cardOverlay: "rgba(0, 150, 255, 0.4)", // Celeste transparente
+        darkOverlay: "rgba(0, 0, 0, 0.7)", // Negro transparente oscuro
+        lightOverlay: "rgba(0, 150, 255, 0.2)", // Celeste transparente claro
+        lighttextGray: "#657786", // Gris azulado claro
+        card: "rgba(0, 150, 255, 0.8)", // Celeste transparente
+        cartBg: "#1a1d23", // Negro oscuro
+        cartItem: "#2e343a", // Negro azulado oscuro
+        cartTotal: "#343739", // Negro azulado oscuro claro
+        loaderOverlay: "rgba(0, 150, 255, 0.1)", // Celeste transparente muy claro
       },
     },
   },
