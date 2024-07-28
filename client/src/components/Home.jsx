@@ -3,8 +3,11 @@ import Header from './Header'
 
 const Home = () => {
   return (
-    <div className='w-full h-auto flex flex-col items-center justify-center bg-primary'>
+    <div className='w-full h-auto flex flex-col items-center justify-center bg-slate-400'>
       <Header />
+      <div className='h-[calc(100vh-64px)] bg-slate-400 flex justify-center items-center'>
+            <h1 className='text-4xl text-black'>Página de Inicio</h1>
+        </div>
     </div>
   )
 }

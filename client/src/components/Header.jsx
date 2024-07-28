@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
-import { FaCrown, FaHeart, FaUser, FaAngleDoubleRight   } from 'react-icons/fa'
+import { FaCrown, FaHeart, FaUser, FaAngleDoubleRight } from 'react-icons/fa'
+import { MdSpaceDashboard } from "react-icons/md";
 
 import { Logo } from '../assets/img/index'
 import { isActiveStyle, isNotActiveStyle } from '../assets/utils/styles'
@@ -31,7 +32,7 @@ const Header = () => {
     return (
         <header className='flex items-center w-full p-4 md:py-2 md:px-6 bg-primary text-white'>
             <NavLink to={"/"}>
-                <img src={Logo} alt="Logo" className='w-24' />
+                <img src={Logo} alt="Logo" className='w-24 h-24 bg-slate-400  hover:bg-opacity-70 rounded-md' />
             </NavLink>
 
             <ul className='flex items-center justify-center ml-7'>
@@ -42,7 +43,7 @@ const Header = () => {
             </ul>
 
             <div
-                onClick={() => setIsMenu(true)}
+                onMouseEnter={() => setIsMenu(true)}
                 onMouseLeave={() => setIsMenu(false)}
                 className='flex items-center ml-auto cursor-pointer gap-3 bg-gray-800 rounded-full py-2 px-3 hover:bg-gray-700 transition-all duration-300 ease-in-out'
             >
@@ -73,7 +74,22 @@ const Header = () => {
                         </NavLink>
                         <p className='flex items-center gap-1 text-base text-gray-100 hover:font-semibold hover:text-cyan-500 duration-300 transition ease-in-out'><FaHeart /> Me Gusta</p>
                         <hr />
-                        <p onClick={logOut} className='flex items-center gap-1 text-base text-gray-100 hover:font-semibold hover:text-red-400 duration-300 transition ease-in-out'><FaAngleDoubleRight  /> Cerrar Sesión</p>
+
+                        {
+                            user?.user?.role === 'admin' && (
+                                <>
+                                    <NavLink to={'/Dashboard/home'}>
+                                        <p className='flex items-center gap-1 text-base text-gray-100 hover:font-semibold hover:text-cyan-500 duration-300 transition ease-in-out'><MdSpaceDashboard /> Administrador</p>
+                                    </NavLink>
+
+                                    <hr />
+                                </>
+                            )
+                        }
+
+
+
+                        <p onClick={logOut} className='flex items-center gap-1 text-base text-gray-100 hover:font-semibold hover:text-red-400 duration-300 transition ease-in-out'><FaAngleDoubleRight /> Cerrar Sesión</p>
                     </motion.div>
                 )}
             </div>

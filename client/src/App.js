@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Route, Routes, useNavigate } from 'react-router-dom'
-import { Home, Login } from './components'
+import { Home, Login, Dashboard, MusicPage, PremiumPage, ContactsPage, UserProfilePage, } from './components'
 import { app } from './config/firebase.config'
 import { getAuth } from 'firebase/auth'
 import { AnimatePresence } from 'framer-motion'
@@ -47,6 +47,14 @@ const App = () => {
                 <Routes>
                     <Route path='/login' element={<Login setAuth={setAuth} />} />
                     <Route path='/*' element={<Home />} />
+                    <Route path='/dashboard/*' element={<Dashboard />} />
+                    
+
+                    // rutas de las paginas de la aplicacion
+                    <Route path='/musica' element={<MusicPage />} />
+                    <Route path='/premium' element={<PremiumPage />} />
+                    <Route path='/contactanos' element={<ContactsPage />} />
+                    <Route path='/userProfile' element={<UserProfilePage />} />
                 </Routes>
             </div>
         </AnimatePresence>
