@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 // our artist model
-const artist = require('../models/Artist');
+const artist = require('../models/artist');
 
 router.post('/save', async (req, res) => {
     const newArtist = new artist({
