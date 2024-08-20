@@ -20,11 +20,6 @@ export const DashboardCard = ({ icon, name, count, bgColor }) => {
   )
 }
 
-// Función auxiliar para ajustar el color
-function adjustColor(color, amount) {
-  return '#' + color.replace(/^#/, '').replace(/../g, color => ('0'+Math.min(255, Math.max(0, parseInt(color, 16) + amount)).toString(16)).substr(-2));
-}
-
 const DashboardHome = () => {
   const [{ allUsers, allSongs, artists, allAlbums }, dispatch] = useStateValue();
 
@@ -62,9 +57,9 @@ const DashboardHome = () => {
 
   return (
     <div className="w-full p-6 flex items-center justify-evenly flex-wrap gap-6">
-      <DashboardCard icon={<FaUsers />} name="Users" count={allUsers?.length > 0 ? allUsers?.length : 0} bgColor="#0c90cc" />
-      <DashboardCard icon={<GiLoveSong />} name="Songs" count={allSongs?.length > 0 ? allSongs?.length : 0} bgColor="#0e6ee9" />
-      <DashboardCard icon={<RiUserStarFill />} name="Artists" count={artists?.length > 0 ? artists?.length : 0} bgColor="#e9520e" />
+      <DashboardCard icon={<FaUsers />} name="Usuarios" count={allUsers?.length > 0 ? allUsers?.length : 0} bgColor="#0c90cc" />
+      <DashboardCard icon={<GiLoveSong />} name="Canciones" count={allSongs?.length > 0 ? allSongs?.length : 0} bgColor="#0e6ee9" />
+      <DashboardCard icon={<RiUserStarFill />} name="Artistas" count={artists?.length > 0 ? artists?.length : 0} bgColor="#e9520e" />
       <DashboardCard icon={<GiMusicalNotes />} name="Albums" count={allAlbums?.length > 0 ? allAlbums?.length : 0} bgColor="#e90e38" />
     </div>
   );

@@ -11,15 +11,16 @@ import DashboardHome from './DashboardHome'
 
 const Dashboard = () => {
   return (
-    <div className='w-full h-auto flex flex-col items-center justify-center bg-primary'>
-        <Header />
+    <div className='w-full flex flex-col items-center justify-center bg-primaryColorLight relative rounded-md'>
+      <Header />
 
-        <div className='w-[60%] my-2 p-4 flex items-center justify-evenly'>
-          <NavLink to={"/dashboard/home"} className={({isActive}) => isActive ? isActiveStyle : isNotActiveStyle}> <IoHome className='text-2xl text-textLight' /></NavLink>
-          <NavLink to={"/dashboard/users"} className={({isActive}) => isActive ? isActiveStyle : isNotActiveStyle}> Users </NavLink>
-          <NavLink to={"/dashboard/songs"} className={({isActive}) => isActive ? isActiveStyle : isNotActiveStyle}> Songs </NavLink>
-          <NavLink to={"/dashboard/artists"} className={({isActive}) => isActive ? isActiveStyle : isNotActiveStyle}> Artists </NavLink>
-          <NavLink to={"/dashboard/albums"} className={({isActive}) => isActive ? isActiveStyle : isNotActiveStyle}> Albums </NavLink>
+      <div className="w-full h flex-grow flex flex-col items-center justify-center bg-primaryColorLight relative rounded-md">
+        <div className='w-[60%] my-2 p-4 flex items-center justify-evenly rounded-md'>
+          <NavLink to={"/dashboard/home"} className={({ isActive }) => isActive ? isActiveStyle : isNotActiveStyle}> <IoHome className='text-2xl'/></NavLink>
+          <NavLink to={"/dashboard/users"} className={({ isActive }) => isActive ? isActiveStyle : isNotActiveStyle}> Usuarios </NavLink>
+          <NavLink to={"/dashboard/songs"} className={({ isActive }) => isActive ? isActiveStyle : isNotActiveStyle}> Canciones </NavLink>
+          <NavLink to={"/dashboard/artists"} className={({ isActive }) => isActive ? isActiveStyle : isNotActiveStyle}> Artistas </NavLink>
+          <NavLink to={"/dashboard/albums"} className={({ isActive }) => isActive ? isActiveStyle : isNotActiveStyle}> Albums </NavLink>
         </div>
 
         <div className='my-4 w-full p-4'>
@@ -33,6 +34,7 @@ const Dashboard = () => {
           </Routes>
 
         </div>
+      </div>
 
 
     </div>

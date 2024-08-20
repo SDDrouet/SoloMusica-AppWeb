@@ -1,3 +1,45 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    background-color: theme('colors.primaryColorLight');
+    overflow-x: hidden;
+    caret-color: transparent;
+}
+
+form {
+    caret-color: theme('colors.primaryColor'); 
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 16px;
+    position: absolute;
+}
+
+::-webkit-scrollbar-corner {
+    background-color: theme('colors.primaryColor');
+    position: absolute;
+}
+
+ 
+/* Track */
+::-webkit-scrollbar-track {
+    background: theme('colors.primaryColor');
+    position: absolute;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: theme('colors.primaryColorLight');
+    border-radius: 8px;
+    border: 4px solid theme('colors.primaryColor');
+    
+}
+ 
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: theme('colors.secondaryColor');
+    position: absolute;
+}

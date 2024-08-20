@@ -44,6 +44,16 @@ module.exports = {
         "2xl": "1536px",
       },
       colors: {
+        primaryColor: "#222831", // Negro
+        primaryColorLight: "#2e333b",
+        secondaryColor: "#393E46", // Gris
+        secondaryColorLight: "#42464d", // Gris
+        tertiaryColor: "#0EA5E9", // Cyan
+        tertiaryColorLight: "#20bbff",
+        quaternaryColor: "#EEEEEE", // Blanco
+        deleteColor: "#e90e28", // Rojo
+
+
         headingColor: "#1a1d23", // Negro oscuro
         textColor: "#4f5d6e", // Gris azulado oscuro
         textLight: "#e6f1f4", // Blanco claro
