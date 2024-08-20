@@ -46,6 +46,7 @@ module.exports = {
       colors: {
         headingColor: "#1a1d23", // Negro oscuro
         textColor: "#4f5d6e", // Gris azulado oscuro
+        textLight: "#e6f1f4", // Blanco claro
         cartNumBg: "#00acee", // Cyan claro
         primary: "#2f343a", // Negro azulado oscuro
         cardOverlay: "rgba(0, 150, 255, 0.4)", // Celeste transparente

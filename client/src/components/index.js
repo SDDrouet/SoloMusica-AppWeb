@@ -7,6 +7,8 @@ export {default as Dashboard} from './Dashboard.jsx'
 export {default as DashboardHome} from './DashboardHome.jsx'
 export {default as DashboardSongs} from './DashboardSongs.jsx'
 export {default as DashboardUsers} from './DashboardUsers.jsx'
+export {default as DashboardArtists} from './DashboardArtists.jsx'
+export {default as DashboardAlbums} from './DashboardAlbums.jsx'
 
 //others
 export {default as UserProfilePage} from './UserProfilePage.jsx'
