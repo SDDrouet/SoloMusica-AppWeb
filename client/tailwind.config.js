@@ -51,6 +51,7 @@ module.exports = {
         tertiaryColor: "#0EA5E9", // Cyan
         tertiaryColorLight: "#20bbff",
         quaternaryColor: "#EEEEEE", // Blanco
+        quaternaryColorLight: "FFFFFF",
         deleteColor: "#e90e28", // Rojo
 
 

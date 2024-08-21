@@ -9,10 +9,14 @@ export {default as DashboardSongs} from './DashboardSongs.jsx'
 export {default as DashboardUsers} from './DashboardUsers.jsx'
 export {default as DashboardArtists} from './DashboardArtists.jsx'
 export {default as DashboardAlbums} from './DashboardAlbums.jsx'
+export {default as SongCard} from './SongCard.jsx'
+export {default as DashboardNewSong} from './DashboardNewSong.jsx'
+
 
 //others
 export {default as UserProfilePage} from './UserProfilePage.jsx'
 export {default as MusicPage} from './MusicPage.jsx'
 export {default as ContactsPage} from './ContactsPage.jsx'
 export {default as PremiumPage} from './PremiumPage.jsx'
+export {default as FilterButtons} from './FilterButtons.jsx'
 

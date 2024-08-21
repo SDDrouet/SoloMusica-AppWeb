@@ -8,26 +8,25 @@ body {
     caret-color: transparent;
 }
 
-form {
+input {
     caret-color: theme('colors.primaryColor'); 
 }
 
 /* width */
 ::-webkit-scrollbar {
     width: 16px;
-    position: absolute;
 }
 
 ::-webkit-scrollbar-corner {
     background-color: theme('colors.primaryColor');
-    position: absolute;
+    border-radius: 8px;
 }
 
  
 /* Track */
 ::-webkit-scrollbar-track {
     background: theme('colors.primaryColor');
-    position: absolute;
+    border-radius: 8px;
 }
  
 /* Handle */
