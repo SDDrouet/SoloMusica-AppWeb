@@ -16,7 +16,7 @@ import { useStateValue } from '../context/StateProvider';
 import { actionType } from '../context/reducer';
 import FilterButtons from './FilterButtons';
 import { filterByLanguage, filters } from '../utils/supportfunctions';
-import { getAllAlbums, getAllArtist, getAllSongs, saveNewSong } from '../api';
+import { getAllAlbums, getAllArtist, getAllSongs, saveNewAlbum, saveNewArtist, saveNewSong } from '../api';
 
 
 const DashboardNewSong = () => {
@@ -31,6 +31,25 @@ const DashboardNewSong = () => {
   const [audioImageCover, setAudioImageCover] = useState(null);
   const [audioUploadProgress, setAudioUploadProgress] = useState(0);
   const [isAudioLoading, setIsAudioLoading] = useState(false);
+
+
+  //artist
+  const [artistImageCover, setArtistImageCover] = useState(null);
+  const [isArtistLoading, setIsArtistLoading] = useState(false);
+  const [artistUploadProgress, setArtistUploadProgress] = useState(0);
+  const [artistName, setArtistName] = useState('');
+  const [twitter, setTwitter] = useState('');
+  const [instagram, setInstagram] = useState('');
+
+  //album
+  const [albumImageCover, setAlbumImageCover] = useState(null);
+  const [isAlbumLoading, setIsAlbumLoading] = useState(false);
+  const [albumUploadProgress, setAlbumUploadProgress] = useState(0);
+  const [albumName, setAlbumName] = useState('');
+
+
+  const [setAlert, setSetAlert] = useState(null);
+  const [alertMsg, setAlertMsg] = useState("");
 
   useEffect(() => {
     if (!allArtists) {
@@ -79,7 +98,34 @@ const DashboardNewSong = () => {
       setIsAudioLoading(false);
     });
 
-}
+  }
+
+  const deleteFileArtist = (url, isImage) => {
+    if (isImage) {
+      setIsArtistLoading(true);      
+    }
+
+    const deletRef = ref(storage, url);
+
+    deleteObject(deletRef).then(() => {
+      setArtistImageCover(null);
+      setIsArtistLoading(false);
+    });
+
+  }
+
+  const deleteFileAlbum = (url, isImage) => {
+    if (isImage) {
+      setIsAlbumLoading(true);      
+    }
+
+    const deletRef = ref(storage, url);
+
+    deleteObject(deletRef).then(() => {
+      setAlbumImageCover(null);
+      setIsAlbumLoading(false);
+    });
+  }
 
   const saveSong = () => {
     if(!songImageCover || !audioImageCover || !songName || !artistFilter || !albumFilter || !languageFilter) {
@@ -97,8 +143,6 @@ const DashboardNewSong = () => {
         language: languageFilter,
         category: filterTerm,
       };
-
-      console.log(data);
 
       saveNewSong(data).then(res => {
         getAllSongs().then(songs => {
@@ -122,13 +166,73 @@ const DashboardNewSong = () => {
     }
   }
 
+  const saveArtist = () => {
+    if (!artistImageCover || !artistName || !twitter || !instagram) {
+      //alert
+    } else {
+      setIsArtistLoading(true);
+
+      const data =  {
+        name: artistName,
+        imageUrl: artistImageCover,
+        twitter: `x.com/${twitter}`,
+        instagram: `www.instagram.com/${instagram}`,
+      }
+
+      saveNewArtist(data).then(res => {
+        getAllArtist().then(data => {
+          dispath({
+            type: actionType.SET_ALL_ARTISTS,
+            allArtists: data.artist,
+          });
+        });
+      });
+
+      setIsArtistLoading(false);
+      setArtistImageCover(null);
+      setArtistName('');
+      setTwitter('');
+      setInstagram('');
+
+    }
+
+  }
+
+  const saveAlbum = () => {
+    if (!albumImageCover || !albumName) {
+      //alert
+    } else {
+      setIsAlbumLoading(true);
+
+      const data = {
+        name: albumName,
+        imageUrl: albumImageCover,
+      }
+
+      saveNewAlbum(data).then(res => {
+        getAllAlbums().then(data => {
+          dispath({
+            type: actionType.SET_ALL_ALBUMS,
+            allAlbums: data.album,
+          });
+        });
+      });
+
+      setIsAlbumLoading(false);
+      setAlbumImageCover(null);
+      setAlbumName('');
+    }
+  }
+
   return (
-    <div className='flex flex-col items-center justify-center p-4 border border-secondaryColorLight rounded-md bg-secondaryColor gap-4'>
+    <div className='flex items-start justify-start gap-4 w-full'>
+    {/* new song  Form*/}
+    <div className='flex flex-col items-center w-full justify-center px-4 py-7 border border-secondaryColorLight rounded-md bg-secondaryColor gap-4'>
 
       <input
         type="text"
         placeholder='Nombre de la canción'
-        className='w-full p-3 rounded-md text-base font-semibold text-primaryColor outline-none shadow-sm bg-quaternaryColor'
+        className='w-full p-3 rounded-md text-base font-semibold border-2 border-primaryColor text-primaryColor outline-none shadow-sm bg-quaternaryColor'
         value={songName}
         onChange={(e) => setSongName(e.target.value)}
       />
@@ -204,7 +308,7 @@ const DashboardNewSong = () => {
         )}
       </div>
 
-      <div className='flex items-center justify-center w-60 cursor-pointer p-4'>
+      <div className='flex items-center justify-center w-60 cursor-pointer'>
           {isImageLoading || isAudioLoading ? (
             <DisabledButton />
           ) : (
@@ -217,7 +321,173 @@ const DashboardNewSong = () => {
             </motion.button>
           )}
       </div>
+    </div>
 
+    <div className='flex flex-col items-start justify-start w-full gap-4'>
+
+    {/* new artist Form*/}
+
+    <div className='flex w-full h-1/2 flex-col items-center justify-center px-4 py-8 border border-secondaryColorLight rounded-md bg-secondaryColor gap-4'>
+      <p className='text-quaternaryColor font-semibold text-2xl'>Nuevo Artista</p>
+
+      <div className='relative flex w-full h-full items-start justify-start gap-4'>
+          {/* insertar imagen*/}
+          <div className='bg-primaryColorLight backdrop-blur-md w-1/2 h-300 rounded-md border-2 border-primaryColor hover:border-tertiaryColor'>
+        {isArtistLoading && <FileLoader progress={artistUploadProgress}/>}
+        {!isArtistLoading && (
+          <>
+            {!artistImageCover ? (
+              <FileUploader
+                updateState = {setArtistImageCover}
+                setProgress = {setArtistUploadProgress}
+                isLoading = {setIsArtistLoading}
+                isImage={true}
+              />
+            ) : (
+              <div className='relative w-full h-full overflow-hidden rounded-md'>
+                <img 
+                  src={artistImageCover}
+                  className='w-full h-full object-cover cursor-default'
+                  alt=""
+                />
+
+                <button
+                  type='button'
+                  className='absolute bottom-3 right-3 p-3 rounded-full bg-red-500 hover:bg-deleteColor text-xl cursor-pointer outline-none border-none hover:shadow-md duration-200 transition-all ease-in-out'
+                  onClick={() => deleteFileArtist(artistImageCover, true)}
+                >
+                  <MdDelete className='text-quaternaryColor'/>
+                </button>
+              </div>
+            )}
+          </>
+        )}
+      </div>
+
+        {/* campos de entrada*/}
+
+        <div className='flex flex-col items-center justify-center w-1/2 h-full gap-2'>
+          <input
+            type="text"
+            placeholder='Nombre del artista...'
+            className='w-full p-3 rounded-md text-base font-semibold text-primaryColor border-2 border-primaryColor outline-none shadow-sm bg-quaternaryColor'
+            value={artistName}
+            onChange={(e) => setArtistName(e.target.value)}
+          />
+
+          <div className='flex items-center p-3 border-2 border-primaryColor rounded-md bg-quaternaryColor w-full'>
+            <p className='text-base font-semibold text-gray-400'>x.com/</p>
+            <input
+              type="text"
+              placeholder='X ID (Twitter ID)'
+              className='text-base font-semibold text-primaryColor outline-none bg-transparent'
+              value={twitter}
+              onChange={(e) => setTwitter(e.target.value)}
+            />
+          </div>
+
+          <div className='flex items-center p-3 border-2 border-primaryColor rounded-md bg-quaternaryColor w-full'>
+            <p className='text-base font-semibold text-gray-400'>www.instagram.com/</p>
+            <input
+              type="text"
+              placeholder='Instagram ID'
+              className='text-base font-semibold text-primaryColor outline-none bg-transparent'
+              value={instagram}
+              onChange={(e) => setInstagram(e.target.value)}
+            />
+          </div>
+
+          <div className='absolute bottom-0 right-0 w-60 cursor-pointer'>
+          {isArtistLoading ? (
+            <DisabledButton />
+          ) : (
+            <motion.button
+              whileTap={{ scale: 0.90 }}
+              className='px-8 py-2 w-full rounded-md text-primaryColor font-semibold bg-tertiaryColor hover:shadow-lg hover:bg-tertiaryColorLight'
+              onClick={saveArtist}
+            >
+              Guardar Artista
+            </motion.button>
+          )}
+      </div>
+        </div>
+
+
+      </div>
+
+    </div>
+
+    {/* new album Form*/}
+
+    <div className='flex w-full h-1/2 flex-col items-center justify-center px-4 py-8 border border-secondaryColorLight rounded-md bg-secondaryColor gap-4'>
+      <p className='text-quaternaryColor font-semibold text-2xl'>Nuevo Álbum</p>
+
+      <div className='relative flex w-full h-full items-start justify-start gap-4'>
+          {/* insertar imagen*/}
+          <div className='bg-primaryColorLight backdrop-blur-md w-1/2 h-300 rounded-md border-2 border-primaryColor hover:border-tertiaryColor'>
+        {isAlbumLoading && <FileLoader progress={albumUploadProgress}/>}
+        {!isAlbumLoading && (
+          <>
+            {!albumImageCover ? (
+              <FileUploader
+                updateState = {setAlbumImageCover}
+                setProgress = {setAlbumUploadProgress}
+                isLoading = {setIsAlbumLoading}
+                isImage={true}
+              />
+            ) : (
+              <div className='relative w-full h-full overflow-hidden rounded-md'>
+                <img 
+                  src={albumImageCover}
+                  className='w-full h-full object-cover cursor-default'
+                  alt=""
+                />
+
+                <button
+                  type='button'
+                  className='absolute bottom-3 right-3 p-3 rounded-full bg-red-500 hover:bg-deleteColor text-xl cursor-pointer outline-none border-none hover:shadow-md duration-200 transition-all ease-in-out'
+                  onClick={() => deleteFileAlbum(albumImageCover, true)}
+                >
+                  <MdDelete className='text-quaternaryColor'/>
+                </button>
+              </div>
+            )}
+          </>
+        )}
+      </div>
+
+        {/* campos de entrada*/}
+
+        <div className='flex flex-col items-center justify-start w-1/2 h-52 gap-2'>
+          <input
+            type="text"
+            placeholder='Nombre del álbum...'
+            className='w-full p-3 rounded-md text-base font-semibold text-primaryColor border-2 border-primaryColor outline-none shadow-sm bg-quaternaryColor'
+            value={albumName}
+            onChange={(e) => setAlbumName(e.target.value)}
+          />
+
+
+          <div className='absolute bottom-0 right-0 w-60 cursor-pointer'>
+          {isAlbumLoading ? (
+            <DisabledButton />
+          ) : (
+            <motion.button
+              whileTap={{ scale: 0.90 }}
+              className='px-8 py-2 w-full m-0 rounded-md text-primaryColor font-semibold bg-tertiaryColor hover:shadow-lg hover:bg-tertiaryColorLight'
+              onClick={saveAlbum}
+            >
+              Guardar Álbum
+            </motion.button>
+          )}
+      </div>
+        </div>
+
+
+      </div>
+    </div>
+
+    </div>
     </div>
   )
 }
