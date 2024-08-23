@@ -19,4 +19,6 @@ export {default as MusicPage} from './MusicPage.jsx'
 export {default as ContactsPage} from './ContactsPage.jsx'
 export {default as PremiumPage} from './PremiumPage.jsx'
 export {default as FilterButtons} from './FilterButtons.jsx'
+export {default as Alert} from './Alert.jsx'
+export {default as MusicPlayer} from './MusicPlayer.jsx'
 

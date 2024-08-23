@@ -88,7 +88,7 @@ router.put("/update/:id", async (req, res) => {
 router.delete('/delete/:id', async (req, res) => {
     const filter = { _id: req.params.id };
     try {
-        const result = await song.deleteOne(filter);
+        const result = await song.findOneAndDelete(filter);
         if (result) {
             return res.status(200).send({ success: true, data: result });
         } else {

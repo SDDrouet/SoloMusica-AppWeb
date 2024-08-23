@@ -10,9 +10,10 @@ import { app } from '../config/firebase.config'
 import { getAuth } from 'firebase/auth'
 
 import { motion } from 'framer-motion'
+import { actionType } from '../context/reducer';
 
 const Header = () => {
-    const [{ user }] = useStateValue();
+    const [{ user, isSongPlaying }, dispatch] = useStateValue();
     const [isMenu, setIsMenu] = useState(false);
 
     const navigate = useNavigate();
@@ -26,11 +27,15 @@ const Header = () => {
             // An error happened.
             console.log(error);
         });
+        dispatch({
+            type: actionType.SET_ISSONG_PLAYING,
+            isSongPlaying: false,
+        });
         navigate('/login', { replace: true });
     }
 
     return (
-        <header className='flex items-center w-full p-4 md:py-2 md:px-6 bg-primaryColor text-quaternaryColor'>
+        <header className='flex items-center w-full p-4 md:py-2 md:px-6 bg-primaryColor text-quaternaryColor z-10'>
             <NavLink to={"/"}>
                 <img src={Logo} alt="Logo" className='w-24 h-24 bg-quaternaryColor  hover:bg-opacity-90 rounded-md' />
             </NavLink>

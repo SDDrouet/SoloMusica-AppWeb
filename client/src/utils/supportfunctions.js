@@ -4,11 +4,11 @@ export const filters = [
     { id: 2, name: 'Pop', value: 'pop' },
     { id: 3, name: 'Latino', value: 'latino' },
     { id: 4, name: 'Rap', value: 'rap' },
-    { id: 5, name: 'Clasico', value: 'clasico' },
+    { id: 5, name: 'Clásico', value: 'clásico' },
+    { id: 6, name: 'Indy', value: 'indy' },
 ];
 
 // tipos de idiomas
-
 export const filterByLanguage = [
     { id: 1, name: 'Español', value: 'español' },
     { id: 2, name: 'Ingles', value: 'ingles' },

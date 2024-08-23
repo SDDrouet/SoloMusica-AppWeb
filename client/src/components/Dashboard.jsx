@@ -3,9 +3,12 @@ import Header from './Header'
 import { IoHome } from 'react-icons/io5'
 import { NavLink, Route, Routes } from 'react-router-dom'
 import { isActiveStyle, isNotActiveStyle } from '../assets/utils/styles'
-import { DashboardAlbums, DashboardArtists, DashboardHome, DashboardNewSong, DashboardSongs, DashboardUsers } from '.'
+import { Alert, DashboardAlbums, DashboardArtists, DashboardHome, DashboardNewSong, DashboardSongs, DashboardUsers } from '.'
+import { useStateValue } from '../context/StateProvider'
 
 const Dashboard = () => {
+  const [{alertType}, dispath ] = useStateValue()
+
   return (
     <div className='w-full flex flex-col items-center justify-center bg-primaryColorLight relative rounded-md'>
       <Header />
@@ -23,7 +26,7 @@ const Dashboard = () => {
           <Routes>
             <Route path='/home' element={<DashboardHome />} />
             <Route path='/users' element={<DashboardUsers />} />
-            <Route path='/songs' element={<DashboardSongs />} />
+            <Route path='/songs' element={<DashboardSongs isEditable={true} />} />
             <Route path='/artists' element={<DashboardArtists />} />
             <Route path='/albums' element={<DashboardAlbums />} />
             <Route path='/newSong' element={<DashboardNewSong />} />
@@ -32,6 +35,7 @@ const Dashboard = () => {
         </div>
       </div>
 
+      {alertType && <Alert type={alertType} />}
 
     </div>
   )

@@ -11,6 +11,18 @@ moment.locale('es');
 
 const DashboardUsers = () => {
   const [{ allUsers }, dispatch] = useStateValue();
+  
+
+  useState(() => {
+    if (!allUsers) {
+      getAllUsers().then((data) => {
+        dispatch({
+          type: actionType.SET_ALL_USERS,
+          allUsers: data.data,
+        });
+      });
+    }
+  }, []);
 
   return (
     <div className='w-full p-4 flex items-start justify-start flex-col text-quaternaryColor'>

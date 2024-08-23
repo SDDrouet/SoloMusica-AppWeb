@@ -8,12 +8,11 @@ const FilterButtons = ({ filterData, flag}) => {
     const [filterMenu, setFilterMenu] = useState(false);
     const [ {artistFilter, albumFilter, filterTerm, languageFilter}, dispatch] = useStateValue();
 
-
-    const [longitud, setLongitud] = useState(15);
+    const [longitud, setLongitud] = useState(20);
 
     useEffect(() => {
         if ( flag === 'Artista' || flag === 'Álbum') {
-            setLongitud(10);
+            setLongitud(15);
         }
     });
 
@@ -77,7 +76,7 @@ const FilterButtons = ({ filterData, flag}) => {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                className='w-48 z-50 backdrop-blur-sm max-h-44 overflow-y-scroll py-2 flex flex-col rounded-md shadow-md absolute top-8 left-0 bg-primaryColor text-quaternaryColor'
+                className='w-64 z-50 backdrop-blur-sm max-h-44 overflow-y-scroll py-2 flex flex-col rounded-md shadow-md absolute top-8 left-0 bg-primaryColor text-quaternaryColor'
             >
                 {filterData.map((data, i) => (
                     <div
@@ -86,7 +85,7 @@ const FilterButtons = ({ filterData, flag}) => {
                         onClick={() => updateFilterButton(data.name)}
                     >
                         
-                        {(flag === 'Artist' || flag === 'Álbum') && (
+                        {(flag === 'Artista' || flag === 'Álbum') && (
                          <img 
                             src={data.imageUrl}                            
                             className='w-8 min-w-[32px] h-8 rounded-full object-cover'

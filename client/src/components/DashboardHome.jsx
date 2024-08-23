@@ -21,7 +21,7 @@ export const DashboardCard = ({ icon, name, count, bgColor }) => {
 }
 
 const DashboardHome = () => {
-  const [{ allUsers, allSongs, artists, allAlbums }, dispatch] = useStateValue();
+  const [{ allUsers, allSongs, allArtists, allAlbums }, dispatch] = useStateValue();
 
   useEffect(() => {
     if(!allUsers) {
@@ -37,20 +37,27 @@ const DashboardHome = () => {
       getAllSongs().then((data) => {
         dispatch({
           type: actionType.SET_ALL_SONGS,
-          allSongs: data.data,
+          allSongs: data.song,
         });
       });
     }
 
-    if (!artists) {
+    if (!allArtists) {
       getAllArtist().then((data) => {
-        dispatch({ type: actionType.SET_ARTISTS, artists: data.data });
+        dispatch({
+          type: actionType.SET_ALL_ARTISTS,
+          allArtists: data.artist
+        });
       });
     }
 
     if (!allAlbums) {
       getAllAlbums().then((data) => {
-        dispatch({ type: actionType.SET_ALL_ALBUMNS, allAlbums: data.data });
+        console.log(data)
+        dispatch({
+          type: actionType.SET_ALL_ALBUMS,
+          allAlbums: data.album
+        });
       });
     }
   }, [])
@@ -59,7 +66,7 @@ const DashboardHome = () => {
     <div className="w-full p-6 flex items-center justify-evenly flex-wrap gap-6">
       <DashboardCard icon={<FaUsers />} name="Usuarios" count={allUsers?.length > 0 ? allUsers?.length : 0} bgColor="#0c90cc" />
       <DashboardCard icon={<GiLoveSong />} name="Canciones" count={allSongs?.length > 0 ? allSongs?.length : 0} bgColor="#0e6ee9" />
-      <DashboardCard icon={<RiUserStarFill />} name="Artistas" count={artists?.length > 0 ? artists?.length : 0} bgColor="#e9520e" />
+      <DashboardCard icon={<RiUserStarFill />} name="Artistas" count={allArtists?.length > 0 ? allArtists?.length : 0} bgColor="#e9520e" />
       <DashboardCard icon={<GiMusicalNotes />} name="Albums" count={allAlbums?.length > 0 ? allAlbums?.length : 0} bgColor="#e90e38" />
     </div>
   );
