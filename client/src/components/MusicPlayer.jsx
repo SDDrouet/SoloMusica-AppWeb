@@ -48,7 +48,7 @@ const MusicPlayer = () => {
     
 
     return (
-        <div className='w-full flex items-center gap-3 min-h-8'>
+        <div className='w-full flex items-center gap-3 min-h-8 z-30'>
             {isPlayerVisible ? (
                 <div>
                     <p className='flex gap-2 items-center justify-center pl-4 py-1 text-base text-primaryColor font-semibold'>
@@ -130,6 +130,7 @@ const MusicPlayer = () => {
                         showFilledVolume={true}
                         showSkipControls={true}
                         className='outline-none'
+                        onEnded={nextTrack}
                         
                     />
                 </div>

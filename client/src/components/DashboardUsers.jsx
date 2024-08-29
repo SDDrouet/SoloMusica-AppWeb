@@ -27,7 +27,7 @@ const DashboardUsers = () => {
   return (
     <div className='w-full p-4 flex items-start justify-start flex-col text-quaternaryColor'>
       {/* Tabular datos en formulario */}
-      <div className='relative w-full py-12 overflow-x-auto my-4 flex flex-col items-start justify-start p-4 border border-secondaryColorLight rounded-md gap-3 bg-secondaryColor'>
+      <div className='relative w-full py-12 overflow-x-auto my-4 flex flex-col items-start justify-start p-4 border border-secondaryColorLight rounded-md gap-3 bg-black bg-opacity-50'>
         {/* Total count of the users */}
         <div className='absolute top-4 left-4'>
           <p className='text-sm font-semibold'>
@@ -93,7 +93,7 @@ export const DashboardUserCard = ({ data, index }) => {
   };
 
   return (
-    <tr className='hover:bg-secondaryColorLight'>
+    <tr className='hover:bg-white hover:bg-opacity-5'>
       <td className='p-2'>
         {data._id !== user?.user._id && (
           <motion.div

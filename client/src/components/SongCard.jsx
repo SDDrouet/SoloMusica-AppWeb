@@ -91,7 +91,10 @@ const SongCard = ({ data, index, isEditable}) => {
 
     return (
         <motion.div
-            className='relative w-40 min-w-210 px-2 cursor-pointer hover:bg-primaryColor bg-primaryColorLight shadow-md rounded-lg flex flex-col items-center duration-150 transition-all ease-in-out'
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+
+            className='transition relative w-40 min-w-210 px-2 cursor-pointer hover:bg-primaryColorLight bg-primaryColor shadow-md rounded-lg flex flex-col items-center duration-150 ease-in-out'
             onClick={addToContext}
         >
             <div className='w-40 min-w-[160px] h-40 min-h-[160px] rounded-lg drop-shadow-lg relative overflow-hidden'>

@@ -38,7 +38,9 @@ const Home = () => {
             </button>
           </NavLink>
         </div>
-        <DashboardHome />
+        <div className='mb-24'>
+          <DashboardHome />
+        </div>
       </div>
     </div>
   );

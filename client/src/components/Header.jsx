@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
-import { FaCrown, FaHeart, FaUser, FaAngleDoubleRight } from 'react-icons/fa'
+import { FaCrown, FaUser, FaAngleDoubleRight } from 'react-icons/fa'
 import { MdSpaceDashboard } from "react-icons/md";
 
 import { Logo } from '../assets/img/index'
@@ -44,7 +44,6 @@ const Header = () => {
                 <li className='mx-5 text-lg'><NavLink to={'/inicio'} className={({ isActive }) => isActive ? isActiveStyle : isNotActiveStyle}>Inicio</NavLink></li>
                 <li className='mx-5 text-lg'><NavLink to={'/musica'} className={({ isActive }) => isActive ? isActiveStyle : isNotActiveStyle}>Música</NavLink></li>
                 <li className='mx-5 text-lg'><NavLink to={'/premium'} className={({ isActive }) => isActive ? isActiveStyle : isNotActiveStyle}>Premium</NavLink></li>
-                <li className='mx-5 text-lg'><NavLink to={'/contactanos'} className={({ isActive }) => isActive ? isActiveStyle : isNotActiveStyle}>Contactanos</NavLink></li>
             </ul>
 
             <div
@@ -77,8 +76,6 @@ const Header = () => {
                         <NavLink to={'/userProfile'}>
                             <p className='flex items-center gap-1 text-base text-quaternaryColor hover:font-semibold hover:text-tertiaryColorLight transition duration-300 ease-in-out'><FaUser /> Perfil</p>
                         </NavLink>
-                        <p className='flex items-center gap-1 text-base text-quaternaryColor hover:font-semibold hover:text-tertiaryColorLight duration-300 transition ease-in-out'><FaHeart /> Me Gusta</p>
-                        <hr />
 
                         {
                             user?.user?.role === 'admin' && (

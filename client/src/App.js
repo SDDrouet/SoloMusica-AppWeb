@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Route, Routes, useNavigate } from 'react-router-dom'
-import { Home, Login, Dashboard, MusicPage, PremiumPage, ContactsPage, UserProfilePage, MusicPlayer, } from './components'
+import { Home, Login, Dashboard, MusicPage, PremiumPage, UserProfilePage, MusicPlayer, } from './components'
 import { app } from './config/firebase.config'
 import { getAuth } from 'firebase/auth'
 import { AnimatePresence } from 'framer-motion'
@@ -58,7 +58,6 @@ const App = () => {
                     // rutas de las paginas de la aplicacion
                     <Route path='/musica' element={<MusicPage />} />
                     <Route path='/premium' element={<PremiumPage />} />
-                    <Route path='/contactanos' element={<ContactsPage />} />
                     <Route path='/userProfile' element={<UserProfilePage />} />
                 </Routes>
 
@@ -67,7 +66,7 @@ const App = () => {
                         initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
-                        className='fixed bottom-0 min-w-[700px] inset-x-0 max-h-[7.6rem] bg-gradient-to-t to-tertiaryColor via-tertiaryColor from-tertiaryColorLight shadow-lg flex items-center justify-center border-t-2 border-primaryColor'
+                        className='z-20 fixed bottom-0 min-w-[700px] inset-x-0 max-h-[7.6rem] bg-gradient-to-t to-tertiaryColor via-tertiaryColor from-tertiaryColorLight shadow-lg flex items-center justify-center border-t-2 border-primaryColor '
                     >
                         <MusicPlayer />
 

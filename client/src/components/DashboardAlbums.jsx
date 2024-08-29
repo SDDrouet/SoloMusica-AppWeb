@@ -88,7 +88,7 @@ const DashboardAlbums = () => {
       <NavLink to={"/dashboard/newSong"} className="text-base font-semibold text-primaryColor flex gap-4 items-center justify-center px-4 py-2 border border-tertiaryColor rounded-md bg-tertiaryColor hover:bg-tertiaryColorLight hover:shadow-md cursor-pointer">
         <IoAdd /> <p>Nuevo Álbum</p>
       </NavLink>
-      <div className='relative w-full py-12 overflow-x-auto my-4 flex flex-col items-start justify-start p-4 border border-secondaryColorLight rounded-md gap-3 bg-secondaryColor'>
+      <div className='relative w-full py-12 overflow-x-auto my-4 flex flex-col items-start justify-start p-4 border border-secondaryColorLight rounded-md gap-3 bg-black bg-opacity-50'>
         {/* Conteo total de álbumes */}
         <div className='absolute top-4 left-4'>
           <p className='text-sm font-semibold'>
@@ -120,7 +120,7 @@ const DashboardAlbumCard = ({ album, handleDeleteAlbum }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <tr className='hover:bg-secondaryColorLight'>
+    <tr className='hover:bg-white hover:bg-opacity-5'>
       <td className='p-2'>
         <motion.div
           whileTap={{ scale: 0.75 }}

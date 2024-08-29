@@ -12,6 +12,7 @@ const DashboardSongs = ({ isEditable }) => {
   const [songFilter, setSongFilter] = useState('');
   const [isFocus, setIsFocus] = useState(false);
   const [{ allSongs }, dispath] = useStateValue();
+  const [filteredSongs, setFilteredSongs] = useState([]);
 
   useEffect(() => {
     if (!allSongs) {
@@ -20,9 +21,33 @@ const DashboardSongs = ({ isEditable }) => {
           type: actionType.SET_ALL_SONGS,
           allSongs: data.song
         })
+
+        setFilteredSongs(data.song);
       })
+      
+
+    } else {
+      setFilteredSongs(allSongs);
     }
+
+    
   }, []);
+
+  const shearchSong = (shearchStringSongs) => {
+    setSongFilter(shearchStringSongs);
+    if (shearchStringSongs !== '') {
+      console.log(songFilter);
+      const filtered = allSongs.filter(song => {
+        const filterByName = song.name.toLowerCase().includes(shearchStringSongs.toLowerCase());
+        const filterByArtist = song.artist.toLowerCase().includes(shearchStringSongs.toLowerCase());
+
+        return filterByName || filterByArtist;
+      });
+      setFilteredSongs(filtered);
+    } else {
+      setFilteredSongs(allSongs);
+    }
+  }
 
 
   return (
@@ -42,20 +67,23 @@ const DashboardSongs = ({ isEditable }) => {
           className={`w-52 select-none px-4 py-1.5 border-2 hover:border-tertiaryColor ${isFocus ? "border-tertiaryColor shadow-md" : "border-quaternaryColor"} bg-quaternaryColor font-semibold text-primaryColor rounded-md outline-none duration-150 transition-all ease-in-out text-base`}
           placeholder='Busca aquí...'
           value={songFilter}
-          onChange={(e) => setSongFilter(e.target.value)}
+          onChange={(e) => shearchSong(e.target.value)}
           onBlur={() => setIsFocus(false)}
-          onFocus={() => setIsFocus(true)}
+          onFocus={() => setIsFocus(true)}          
         />
 
         <i>
-          <AiOutlineClear className="text-3xl text-tertiaryColor hover:text-tertiaryColorLight cursor-pointer" />
+          <AiOutlineClear
+            onClick={() => shearchSong('')}
+            className="text-3xl text-tertiaryColor hover:text-tertiaryColorLight cursor-pointer"
+            />
         </i>
 
       </div>
 
       {/* Main Content*/}
 
-      <div className='relative w-full py-12 overflow-y-auto max-h-[700px] my-4 flex flex-col items-start justify-start p-4 border border-secondaryColorLight rounded-md gap-3 bg-secondaryColor'>
+      <div className='relative w-full py-12 overflow-y-auto max-h-[700px] my-4 flex flex-col items-start justify-start p-4 border border-secondaryColorLight rounded-md gap-3 bg-black bg-opacity-50'>
         {/* Song */}
         <div className='absolute top-4 left-4 text-quaternaryColor'>
           <p className='text-sm font-semibold'>
@@ -63,7 +91,7 @@ const DashboardSongs = ({ isEditable }) => {
           </p>
         </div>
 
-        <SongContainer data={allSongs} isEditable={isEditable} />
+        <SongContainer data={filteredSongs} isEditable={isEditable} />
 
       </div>
 
